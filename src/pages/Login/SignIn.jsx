@@ -1,13 +1,18 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import GoogleSignIn from "./GoogleSignIn";
 
 const SignIn = () => {
     // TODO : Reset
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
     const onSubmit = data => {
         signIn(data.email, data.password)
@@ -20,6 +25,7 @@ const SignIn = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
+                navigate(from, { replace: true })
             })
     }
     return (
@@ -65,6 +71,7 @@ const SignIn = () => {
                                 <input className="btn bg-pink-600 text-white" type="submit" value="Sign in" />
                             </div>
                             <div className="divider">OR</div>
+                            <GoogleSignIn />
                             <span className='mx-auto'>Are You New Here? Please <Link to='/signup' className="text-pink-500">Sign Up</Link></span>
                         </div>
                     </form>
