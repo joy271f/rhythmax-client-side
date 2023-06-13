@@ -30,8 +30,8 @@ const GoogleSignIn = () => {
 
     return (
         <div className="flex gap-4 mx-auto">
-            <button onClick={handleGoogleSignIn}><FaGoogle className="text-2xl text-red-700" /></button>
-            <p className="text-red-600">{error}</p>
+            <button onClick={handleGoogleSignIn}><FaGoogle className="text-2xl text-pink-600" /></button>
+            <p className="text-pink-600">{error}</p>
         </div>
     );
 };

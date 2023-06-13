@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import GoogleSignIn from "./GoogleSignIn";
 
 const SignIn = () => {
-    // TODO : Reset
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -55,16 +55,16 @@ const SignIn = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input
-                                    type="password"
+                                    type={passwordVisible ? 'text' : 'password'}
                                     placeholder="password"
                                     {...register("password", { required: true })}
                                     name="password"
                                     className="input input-bordered"
                                 />
+                                <small><p onClick={() => setPasswordVisible(!passwordVisible)}>
+                                    {passwordVisible ? 'Hide Password' : 'Show Password'}
+                                </p></small>
                                 {errors.password?.type === 'required' && <p className="text-amber-300">Password is required</p>}
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
                             </div>
                             <p className="text-pink-600"></p>
                             <div className="form-control mt-6">
