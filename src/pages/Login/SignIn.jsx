@@ -1,11 +1,26 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
     // TODO : Reset
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { signIn } = useContext(AuthContext);
+
     const onSubmit = data => {
-        console.log(data);
+        signIn(data.email, data.password)
+            .then(() => {
+                reset();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Sign In Success',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            })
     }
     return (
         <div className="hero">

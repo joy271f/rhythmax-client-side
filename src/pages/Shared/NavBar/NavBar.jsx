@@ -1,10 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import './NavBar.css'
+import { useContext } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const NavBar = () => {
+    const {user, logOut} = useContext(AuthContext);
 
-    // const user = {name: 'joy', email: 'abc@gmail.com'};
-    const user = null;
+    const handleLogout = () => {
+        logOut()
+        .then(() => {})
+    }
+
     const navItems = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/instructors'>Instructors</NavLink></li>
@@ -42,7 +48,7 @@ const NavBar = () => {
                         <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
                             <img src={user.photoURL} alt="" className="w-10 mr-4 rounded-full h-10" />
                         </div>
-                        <button className="btn btn-primary">Sign Out</button>
+                        <button onClick={handleLogout} className="btn bg-pink-600 text-white">Sign Out</button>
                     </>
                     :
                     <>
