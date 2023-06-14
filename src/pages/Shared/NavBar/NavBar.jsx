@@ -18,7 +18,6 @@ const NavBar = () => {
         {
             user ?
                 <>
-                    <li><NavLink to='/addclass'>Add Class</NavLink></li>
                     <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
                 </> : ''
         }
@@ -26,7 +25,7 @@ const NavBar = () => {
 
 
     return (
-        <div className="navbar h-24 sticky top-0 bg-white text-pink-600 z-10">
+        <div className="navbar p-12 h-24 sticky top-0 bg-white text-pink-600 z-10">
             <div>
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">

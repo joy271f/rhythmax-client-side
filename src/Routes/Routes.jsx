@@ -7,8 +7,9 @@ import SignIn from "../pages/Login/SignIn";
 import SignUp from "../pages/Login/SignUp";
 import Error from "../pages/Error/Error";
 import Classes from "../pages/Clases/Clases/Classes";
-import AddClass from "../pages/Clases/AddClass/AddClass";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import SingleClasses from "../pages/Clases/SingleClasses/SingleClasses";
+import Dashboard from "../Layout/Dashboard";
 
 export const router = createBrowserRouter([
     {
@@ -37,10 +38,6 @@ export const router = createBrowserRouter([
                 element: <SingleClasses />,
                 loader: ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
             },
-            {
-                path: '/addclass',
-                element: <AddClass />
-            },
 
 
             {
@@ -49,4 +46,14 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: '/dashboard',
+        element: <Dashboard />,
+        children: [
+            {
+                path: '/dashboard/addclass',
+                element: <AddClass />
+            }
+        ]
+    }
 ]);

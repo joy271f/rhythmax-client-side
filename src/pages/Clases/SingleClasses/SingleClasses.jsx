@@ -15,6 +15,7 @@ const SingleClasses = () => {
                     <p className="mt-1"><small><span className="font-bold">Instructor Name:</span> {instructorName}</small></p>
                     <h1 className="mt-2"><span className="font-bold">Available Seats:</span> {seats}</h1>
                     <h1 className="mt-2"><span className="font-bold">Regular Price:</span> ${price}</h1>
+                    <button className="btn bg-pink-600 mt-8 text-white">Enroll</button>
                 </div>
             </div>
         </div>

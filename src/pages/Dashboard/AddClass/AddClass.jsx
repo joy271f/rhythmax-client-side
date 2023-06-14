@@ -31,6 +31,7 @@ const AddClass = () => {
 
     return (
         <div>
+            <h1 className="text-4xl text-pink-600 text-center mt-12">Add Class</h1>
             <div className="hero-content my-12 flex-col lg:flex-row">
                 <div className="card flex-shrink-0 w-3/4 shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit(onSubmit)}>
