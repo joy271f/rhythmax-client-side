@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const AddClass = () => {
     const { user } = useContext(AuthContext);
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    //TODO: reset()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
 
     const onSubmit = data => {
@@ -18,10 +18,13 @@ const AddClass = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log('Response from server:', data);
+                if(data.insertedId){
+                    toast.success('Class Added Successfully!')
+                    reset();
+                }
             })
             .catch(error => {
-                console.error('Error:', error);
+                toast.warning('Error', error)
             });
     }
 
@@ -89,6 +92,7 @@ const AddClass = () => {
                                 </label>
                                 <input
                                     type='number'
+                                    placeholder="$"
                                     {...register("price", { required: true })}
                                     className="input input-bordered border-pink-600"
                                 />
