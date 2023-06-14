@@ -4,19 +4,23 @@ import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 
 const NavBar = () => {
-    const {user, logOut} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const handleLogout = () => {
         logOut()
-        .then(() => {})
+            .then(() => { })
     }
 
     const navItems = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/classes'>Classes</NavLink></li>
         <li><NavLink to='/instructors'>Instructors</NavLink></li>
+        <li><NavLink to='/classes'>Classes</NavLink></li>
         {
-            user ? <li><NavLink to='/dashboard'>Dashboard</NavLink></li> : ''
+            user ?
+                <>
+                    <li><NavLink to='/addclass'>Add Class</NavLink></li>
+                    <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+                </> : ''
         }
     </>
 
@@ -37,7 +41,7 @@ const NavBar = () => {
                 </Link>
             </div>
             <div className="navbar-end hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 mx-12">
+                <ul className="menu menu-horizontal px-1 mx-8">
                     {navItems}
                 </ul>
             </div>

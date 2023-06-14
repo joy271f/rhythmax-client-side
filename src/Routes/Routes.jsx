@@ -6,6 +6,8 @@ import Home from "../pages/Home/Home/Home";
 import SignIn from "../pages/Login/SignIn";
 import SignUp from "../pages/Login/SignUp";
 import Error from "../pages/Error/Error";
+import Classes from "../pages/Clases/Clases/Classes";
+import AddClass from "../pages/Clases/AddClass/AddClass";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +25,14 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp />
+            },
+            {
+                path: 'classes',
+                element: <Classes />
+            },
+            {
+                path: 'addclass',
+                element: <AddClass />
             },
 
 
