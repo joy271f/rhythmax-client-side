@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import GoogleSignIn from "./GoogleSignIn";
+import useLogin from "../../hooks/useLogin";
 
 const SignIn = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -13,21 +14,40 @@ const SignIn = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
+    const [LoginInfo, setLoginInfo] = useState({
+        email: null,
+        name: null,
+        role: 'user',
+        insert: false,
+    });
+    useLogin(LoginInfo);
 
+    const jwt = (result, insert = true) => {
+        setLoginInfo({
+            email: result.user.email,
+            name: result.user.displayName,
+            role: 'user',
+            insert,
+        }); setTimeout(() => {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Sign In Success',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            navigate(from, { replace: true })
+        }, 1000);
+
+    }
     const onSubmit = data => {
         signIn(data.email, data.password)
-            .then(() => {
+            .then((result) => {
                 reset();
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Sign In Success',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                navigate(from, { replace: true })
+                jwt(result, false);
             })
     }
+
     return (
         <div className="hero">
             <div className="hero-content mt-8 flex-col lg:flex-row">
@@ -71,7 +91,7 @@ const SignIn = () => {
                                 <input className="btn bg-pink-600 text-white" type="submit" value="Sign in" />
                             </div>
                             <div className="divider">OR</div>
-                            <GoogleSignIn />
+                            <GoogleSignIn jwt={jwt} />
                             <span className='mx-auto'>Are You New Here? Please <Link to='/signup' className="text-pink-500">Sign Up</Link></span>
                         </div>
                     </form>

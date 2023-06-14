@@ -37,6 +37,15 @@ const AuthProvider = ({ children }) => {
     }
 
 
+    const getRole = () => {
+        let data = localStorage.getItem('role');
+        if (data) {
+            return data;
+        } else {
+            return 'user';
+        }
+    }
+
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
@@ -49,6 +58,7 @@ const AuthProvider = ({ children }) => {
 
     const authInfo = {
         user,
+        getRole,
         loading,
         createUser,
         signIn,

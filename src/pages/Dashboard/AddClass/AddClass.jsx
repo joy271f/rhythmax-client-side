@@ -4,21 +4,25 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import { toast } from "react-toastify";
 
 const AddClass = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-
-
     const onSubmit = data => {
         fetch('http://localhost:5000/class', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(data)
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json();
+            })
             .then(data => {
-                if(data.insertedId){
+                if (data.insertedId) {
                     toast.success('Class Added Successfully!')
                     reset();
                 }
