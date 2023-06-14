@@ -4,10 +4,25 @@ import { AuthContext } from "../../../provider/AuthProvider";
 
 const AddClass = () => {
     const { user } = useContext(AuthContext);
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    //TODO: reset()
+
 
     const onSubmit = data => {
-        console.log(data);
+        fetch('http://localhost:5000/class', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('Response from server:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
 
@@ -17,32 +32,24 @@ const AddClass = () => {
                 <div className="card flex-shrink-0 w-3/4 shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="card-body grid md:grid-cols-2 gap-10">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Instructor name</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    {...register("instructorName", { required: true })}
-                                    value={user?.displayName}
-                                    readOnly
-                                    className="input input-bordered border-pink-600"
-                                />
-                                {errors.instructorName && <span className="text-amber-300">Name field is required</span>}
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Instructor email</span>
-                                </label>
-                                <input
-                                    type='email'
-                                    {...register("instructorEmail", { required: true })}
-                                    value={user?.email}
-                                    readOnly
-                                    className="input input-bordered border-pink-600"
-                                />
-                                {errors.instructorEmail && <p className="text-amber-300">email is required</p>}
-                            </div>
+                            <input
+                                type="hidden"
+                                {...register("instructorName", { required: true })}
+                                value={user?.displayName}
+                                readOnly
+                            />
+                            <input
+                                type='hidden'
+                                {...register("instructorEmail", { required: true })}
+                                value={user?.email}
+                                readOnly
+                            />
+                            <input
+                                type='hidden'
+                                {...register("enrolled", { required: true })}
+                                value={0}
+                                readOnly
+                            />
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Class name</span>
