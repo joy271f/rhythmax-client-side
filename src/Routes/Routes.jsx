@@ -11,6 +11,10 @@ import DashboardContent from "../pages/Dashboard/DashboardContent";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import SingleClasses from "../pages/Clases/SingleClasses/SingleClasses";
 import Dashboard from "../Layout/Dashboard";
+import PrivateRoute from "../Routes/PrivateRoute";
+import ManageClass from "../pages/Dashboard/ManageClass/ManageClass";
+import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
+import UpdateClasses from "../pages/Dashboard/UpdateClasses/UpdateClasses";
 
 export const router = createBrowserRouter([
     {
@@ -36,7 +40,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/classes/:id',
-                element: <SingleClasses />,
+                element: <PrivateRoute><SingleClasses /></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/classes/${params.id}`)
             },
             {
@@ -55,7 +59,20 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addclass',
-                element: <AddClass />
+                element: <PrivateRoute><AddClass /></PrivateRoute>
+            },
+            {
+                path: '/dashboard/manageclass',
+                element: <PrivateRoute><ManageClass /></PrivateRoute>
+            },
+            {
+                path: '/dashboard/manageuser',
+                element: <PrivateRoute><ManageUser /></PrivateRoute>
+            },
+            {
+                path: '/dashboard/updateclasses/:id',
+                element: <PrivateRoute><UpdateClasses /></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
             }
         ]
     }

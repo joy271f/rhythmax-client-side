@@ -1,7 +1,7 @@
 
 const DashboardContent = () => {
     return (
-        <div>
+        <div className="text-center mt-12 text-5xl">
             Welcome, back!
         </div>
     );

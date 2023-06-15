@@ -44,9 +44,9 @@ const SignUp = () => {
 
     const onSubmit = data => {
         createUser(data.email, data.password)
-            .then(() => {
+            .then((result) => {
                 updateUserProfile(data.name, data.photo)
-                    .then((result) => {
+                    .then(() => {
                         reset();
                         jwt(result);
                     })
