@@ -67,7 +67,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/manageuser',
-                element: <PrivateRoute><ManageUser /></PrivateRoute>
+                element: <PrivateRoute><ManageUser /></PrivateRoute>,
             },
             {
                 path: '/dashboard/updateclasses/:id',
