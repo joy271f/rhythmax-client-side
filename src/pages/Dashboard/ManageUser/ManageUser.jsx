@@ -8,20 +8,20 @@ const ManageUser = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/users",{
+        fetch("http://localhost:5000/users", {
             method: 'GET',
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
-                },
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
         })
-        .then(res => {
-            if (res.status === 401 || res.status === 403) {
-                return logOut();
-            }
-            return res.json();
-        })
-        .then(data => setUsers(data))
-    },[])
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json();
+            })
+            .then(data => setUsers(data))
+    }, [])
 
     const handleDelete = id => {
         const process = confirm('Are You Sure to Delete?')
@@ -47,23 +47,45 @@ const ManageUser = () => {
                 })
         }
     }
+    const makeInstructor = id => {
+        const process = confirm('Are You Sure?')
+        if (process) {
+            fetch(`http://localhost:5000/makeinstructor/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify({ role: "instructor" })
+            })
+                .then(res => {
+                    if (res.status === 401 || res.status === 403) {
+                        return logOut();
+                    }
+                    return res.json();
+                })
+                .then(() => {
+                    const current = users.find(myUser => myUser._id == id);
+                    current.role = "instructor"
+                    const remaining = users.filter(myUser => myUser._id !== id);
+                    setUsers([current, ...remaining])
+                    toast.success("Make Instructor Successfully")
+                })
+        }
+    }
+
 
 
 
     return (
         <div className='max-w-[95vw] mx-auto'>
             <div>
-                <h1 className='text-center text-purple-600 mt-8 text-4xl font-bold'>My Classes</h1>
+                <h1 className='text-center text-purple-600 mt-8 text-4xl font-bold'>My Users</h1>
                 <div className="overflow-x-auto w-full mx-auto mt-12">
                     <table className="table w-full">
                         {/* head */}
                         <thead>
                             <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" className="checkbox" />
-                                    </label>
-                                </th>
                                 <th>User Name</th>
                                 <th>User Email</th>
                                 <th>User Role</th>
@@ -76,6 +98,7 @@ const ManageUser = () => {
                                     key={user._id}
                                     userInfo={user}
                                     handleDelete={handleDelete}
+                                    makeInstructor={makeInstructor}
                                 ></ShowUser>)
                             }
                         </tbody>
