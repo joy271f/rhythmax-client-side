@@ -16,7 +16,7 @@ const ShowUser = ({ userInfo, handleDelete, makeInstructor }) => {
                 <h1>{role}</h1>
             </td>
             <td>
-                {role != "admin" && role != "instructor" &&
+                {role != "admin" && role != "instructor" && user.email != email &&
                     <button onClick={() => makeInstructor(_id)} className="btn text-white btn-sm bg-pink-700">
                         Make Instructor
                     </button>
