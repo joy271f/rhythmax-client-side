@@ -1,11 +1,27 @@
-import { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import MySelectedClassTable from './MySelectedClassTable';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../provider/AuthProvider';
 
 const MySelectedClass = () => {
-    const myClassesData = useLoaderData()
-    const [myClasses, setMyClasses] = useState(myClassesData)
+    const { user, logOut } = useContext(AuthContext);
+    const [myClasses, setMyClasses] = useState()
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json();
+            })
+            .then(data => setMyClasses(data))
+    }, [user])
 
     const handleDelete = item => {
         Swal.fire({

@@ -21,6 +21,7 @@ const Dashboard = () => {
                         <li><Link to='/dashboard/manageclass' className="text-lg text-purple-800 bg-purple-300 mb-2">Manage Class</Link></li>
                         <li><Link to='/dashboard/manageuser' className="text-lg text-purple-800 bg-purple-300 mb-2">Manage User</Link></li>
                         <li><Link to='/dashboard/myselectedclass' className="text-lg text-purple-800 bg-purple-300 mb-2">My Selected Class</Link></li>
+                        <li><Link to='/dashboard/paymenthistory' className="text-lg text-purple-800 bg-purple-300 mb-2">Payment History</Link></li>
                     </ul>
 
                 </div>

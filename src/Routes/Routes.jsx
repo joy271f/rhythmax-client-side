@@ -16,6 +16,7 @@ import ManageClass from "../pages/Dashboard/ManageClass/ManageClass";
 import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
 import UpdateClasses from "../pages/Dashboard/UpdateClasses/UpdateClasses";
 import MySelectedClass from "../pages/Dashboard/MySelectedClass/MySelectedClass";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -73,12 +74,15 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/updateclasses/:id',
                 element: <PrivateRoute><UpdateClasses /></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/classes/${params.id}`)
             },
             {
                 path: '/dashboard/myselectedclass',
-                element: <PrivateRoute><MySelectedClass /></PrivateRoute>,
-                loader : () => fetch("http://localhost:5000/bookings")
+                element: <PrivateRoute><MySelectedClass /></PrivateRoute>
+            },
+            {
+                path: '/dashboard/paymenthistory',
+                element: <PrivateRoute><Payment /></PrivateRoute>
             }
         ]
     }
