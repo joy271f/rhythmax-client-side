@@ -57,18 +57,18 @@ const MySelectedClass = () => {
     return (
         <div>
             <div className='uppercase font-semibold flex justify-evenly items-center h-[60px]'>
-                <h3 className='text-3xl'>My Selected Classes: {myClasses.length}</h3>
+                <h3 className='text-3xl'>My Selected Classes:</h3>
             </div>
             <div className="overflow-x-auto">
-                <table className="table">
-                    {/* head */}
+                {myClasses && myClasses.length > 0 ? <table className="table">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th className='text-center'>Class</th>
-                            <th className='text-center'>Class Name</th>
-                            <th className='text-center'>Price</th>
-                            <th className='text-center'>Action</th>
+                            <th>Class</th>
+                            <th>Class Name</th>
+                            <th>Price</th>
+                            <th>Payment</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,7 +85,7 @@ const MySelectedClass = () => {
                         }
 
                     </tbody>
-                </table>
+                </table> : <p className='text-center mt-24'>No data found.</p>}
             </div>
         </div>
     );
