@@ -66,7 +66,7 @@ const ManageUser = () => {
                 })
                 .then(() => {
                     const current = users.find(myUser => myUser._id == id);
-                    current.role = "instructor"
+                    current.role = role
                     const remaining = users.filter(myUser => myUser._id !== id);
                     setUsers([current, ...remaining])
                     toast.success("Make Instructor Successfully")
