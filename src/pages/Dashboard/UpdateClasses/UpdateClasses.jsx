@@ -12,7 +12,7 @@ const UpdateClasses = () => {
     const { _id, className, photo, seats, price } = loadData;
 
     const onSubmit = data => {
-        fetch(`http://localhost:5000/classes/${_id}`, {
+        fetch(`https://rhythmax-server-side.vercel.app/classes/${_id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',

@@ -7,7 +7,7 @@ const PaymentHistory = () => {
     const [myPaymentHistory, setMyPaymentHistory] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/bookings?getPaid=true&email=${getRole() == 'admin' ? '' : user?.email}`)
+        fetch(`https://rhythmax-server-side.vercel.app/bookings?getPaid=true&email=${getRole() == 'admin' ? '' : user?.email}`)
             .then(res => res.json())
             .then(data => setMyPaymentHistory(data))
     }, [])

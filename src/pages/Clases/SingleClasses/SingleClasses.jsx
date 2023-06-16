@@ -21,7 +21,7 @@ const SingleClasses = () => {
 
     const handleBooking = () => {
         const bookings = { classID: _id, userName: user?.displayName, userEmail: user?.email, photo, className, price }
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://rhythmax-server-side.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

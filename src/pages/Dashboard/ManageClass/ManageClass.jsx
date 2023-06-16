@@ -9,7 +9,7 @@ const ManageClass = () => {
     const [myClasses, setMyClasses] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/classes?email=${getRole() == 'admin' ? '' : user?.email}`)
+        fetch(`https://rhythmax-server-side.vercel.app/classes?email=${getRole() == 'admin' ? '' : user?.email}`)
             .then(res => res.json())
             .then(data => setMyClasses(data))
     }, [])
@@ -18,7 +18,7 @@ const ManageClass = () => {
     const handleDelete = id => {
         const process = confirm('Are You Sure to Delete?')
         if (process) {
-            fetch(`http://localhost:5000/classes/${id}`, {
+            fetch(`https://rhythmax-server-side.vercel.app/classes/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -8,7 +8,7 @@ const ManageUser = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/users", {
+        fetch("https://rhythmax-server-side.vercel.app/users", {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -26,7 +26,7 @@ const ManageUser = () => {
     const handleDelete = id => {
         const process = confirm('Are You Sure to Delete?')
         if (process) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://rhythmax-server-side.vercel.app/users/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -50,7 +50,7 @@ const ManageUser = () => {
     const makeInstructor = (id, role) => {
         const process = confirm('Are You Sure?')
         if (process) {
-            fetch(`http://localhost:5000/makeinstructor/${id}`, {
+            fetch(`https://rhythmax-server-side.vercel.app/makeinstructor/${id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',

@@ -4,7 +4,7 @@ const useLogin = currentUser => {
     const [token, setToken] = useState('');
     useEffect(() => {
         if (currentUser.email) {
-            fetch(`http://localhost:5000/jwtANDusers`, {
+            fetch(`https://rhythmax-server-side.vercel.app/jwtANDusers`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

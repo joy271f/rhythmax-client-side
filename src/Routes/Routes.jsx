@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch("http://localhost:5000/classes?limit=6&sort=true")
+                loader: () => fetch("https://rhythmax-server-side.vercel.app/classes?limit=6&sort=true")
             },
             {
                 path: '/signin',
@@ -45,12 +45,12 @@ export const router = createBrowserRouter([
             {
                 path: '/classes',
                 element: <Classes />,
-                loader: () => fetch("http://localhost:5000/classes")
+                loader: () => fetch("https://rhythmax-server-side.vercel.app/classes")
             },
             {
                 path: '/classes/:id',
                 element: <PrivateRoute><SingleClasses /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/classes/${params.id}`)
+                loader: ({ params }) => fetch(`https://rhythmax-server-side.vercel.app/classes/${params.id}`)
             },
             {
                 path: '*',
@@ -81,7 +81,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/updateclasses/:id',
                 element: <PrivateRoute><UpdateClasses /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/classes/${params.id}`)
+                loader: ({ params }) => fetch(`https://rhythmax-server-side.vercel.app/classes/${params.id}`)
             },
             {
                 path: '/dashboard/myselectedclass',

@@ -8,7 +8,7 @@ const AddClass = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
         data = { ...data, enrolled: 0 }
-        fetch('http://localhost:5000/class', {
+        fetch('https://rhythmax-server-side.vercel.app/class', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

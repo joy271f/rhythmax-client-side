@@ -5,7 +5,7 @@ const Instrauctor = ({ limit }) => {
 
     const [instructors, setInstructors] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/users?getInstructor=true&limit=${limit}`)
+        fetch(`https://rhythmax-server-side.vercel.app/users?getInstructor=true&limit=${limit}`)
             .then(res => res.json())
             .then(data => {
                 setInstructors(data)
