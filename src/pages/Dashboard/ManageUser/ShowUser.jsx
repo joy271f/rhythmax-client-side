@@ -16,9 +16,14 @@ const ShowUser = ({ userInfo, handleDelete, makeInstructor }) => {
                 <h1>{role}</h1>
             </td>
             <td>
-                {role != "admin" && role != "instructor" && user.email != email &&
-                    <button onClick={() => makeInstructor(_id)} className="btn text-white btn-sm bg-pink-700">
+                {role != "instructor" && user.email != email &&
+                    <button onClick={() => makeInstructor(_id, 'instructor')} className="btn text-white btn-sm bg-pink-700">
                         Make Instructor
+                    </button>
+                }
+                {role != "admin" && user.email != email &&
+                    <button onClick={() => makeInstructor(_id, 'admin')} className="btn text-white btn-sm bg-pink-700">
+                        Make Admin
                     </button>
                 }
                 {user.email != email &&

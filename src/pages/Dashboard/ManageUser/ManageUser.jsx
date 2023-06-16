@@ -47,7 +47,7 @@ const ManageUser = () => {
                 })
         }
     }
-    const makeInstructor = id => {
+    const makeInstructor = (id, role) => {
         const process = confirm('Are You Sure?')
         if (process) {
             fetch(`http://localhost:5000/makeinstructor/${id}`, {
@@ -56,7 +56,7 @@ const ManageUser = () => {
                     'content-type': 'application/json',
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 },
-                body: JSON.stringify({ role: "instructor" })
+                body: JSON.stringify({ role: role })
             })
                 .then(res => {
                     if (res.status === 401 || res.status === 403) {

@@ -5,11 +5,11 @@ import { toast } from "react-toastify";
 
 const ManageClass = () => {
 
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, getRole } = useContext(AuthContext);
     const [myClasses, setMyClasses] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/classes?email=${user?.email}`)
+        fetch(`http://localhost:5000/classes?email=${getRole() == 'admin' ? '' : user?.email}`)
             .then(res => res.json())
             .then(data => setMyClasses(data))
     }, [])

@@ -18,6 +18,7 @@ import UpdateClasses from "../pages/Dashboard/UpdateClasses/UpdateClasses";
 import MySelectedClass from "../pages/Dashboard/MySelectedClass/MySelectedClass";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import Instrauctor from "../pages/Instructor/Instrauctor";
 
 export const router = createBrowserRouter([
     {
@@ -26,7 +27,8 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home />
+                element: <Home />,
+                loader: () => fetch("http://localhost:5000/classes?limit=6&sort=true")
             },
             {
                 path: '/signin',
@@ -35,6 +37,10 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp />
+            },
+            {
+                path: '/instructors',
+                element: <Instrauctor limit={0} />
             },
             {
                 path: '/classes',
@@ -54,7 +60,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             {
                 path: '/dashboard',
@@ -62,7 +68,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addclass',
-                element: <PrivateRoute><AddClass /></PrivateRoute>
+                element: <AddClass />
             },
             {
                 path: '/dashboard/manageclass',

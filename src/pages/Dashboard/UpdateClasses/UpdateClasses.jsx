@@ -6,10 +6,10 @@ import { toast } from "react-toastify";
 
 
 const UpdateClasses = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { logOut } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const loadData = useLoaderData();
-    const {_id, className, photo, seats, price } = loadData;
+    const { _id, className, photo, seats, price } = loadData;
 
     const onSubmit = data => {
         fetch(`http://localhost:5000/classes/${_id}`, {
@@ -40,7 +40,7 @@ const UpdateClasses = () => {
                 <div className="card flex-shrink-0 w-3/4 shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="card-body grid md:grid-cols-2 gap-10">
-                          
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Class name</span>

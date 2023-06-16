@@ -18,6 +18,7 @@ const SignIn = () => {
         email: null,
         name: null,
         role: 'user',
+        photoURL:null,
         insert: false,
     });
     useLogin(LoginInfo);
@@ -27,6 +28,7 @@ const SignIn = () => {
             email: result.user.email,
             name: result.user.displayName,
             role: 'user',
+            photoURL:result.user.photoURL,
             insert,
         }); setTimeout(() => {
             Swal.fire({

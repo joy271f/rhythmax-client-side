@@ -3,11 +3,11 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import { Link } from "react-router-dom";
 
 const PaymentHistory = () => {
-    const { user } = useContext(AuthContext);
+    const { user, getRole } = useContext(AuthContext);
     const [myPaymentHistory, setMyPaymentHistory] = useState([])
-    console.log(myPaymentHistory);
+
     useEffect(() => {
-        fetch(`http://localhost:5000/bookings?getPaid=true&email=${user?.email}`)
+        fetch(`http://localhost:5000/bookings?getPaid=true&email=${getRole() == 'admin' ? '' : user?.email}`)
             .then(res => res.json())
             .then(data => setMyPaymentHistory(data))
     }, [])

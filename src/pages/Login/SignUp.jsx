@@ -18,17 +18,20 @@ const SignUp = () => {
         email: null,
         name: null,
         role: null,
-        insert: false
+        insert: false,
+        photoURL: null,
     });
 
     useLogin(LoginInfo);
 
 
-    const jwt = (result, role = 'user') => {
+    const jwt = (result, role = 'user', photoURL = null) => {
+        photoURL = photoURL ? photoURL : result.user.photoURL;
         setLoginInfo({
             email: result.user.email,
             name: result.user.displayName,
             role,
+            photoURL: photoURL,
             insert: true,
         }); setTimeout(() => {
             Swal.fire({
@@ -48,7 +51,7 @@ const SignUp = () => {
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
                         reset();
-                        jwt(result);
+                        jwt(result, "user", data.photo);
                     })
                     .catch(() => { })
             })
