@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination } from "swiper";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
     return (
@@ -26,7 +27,7 @@ const Banner = () => {
                             <h2 className='md:text-5xl mb-0 font-bold gradient-text uppercase'>Welcome to Our Music School!</h2>
                             <p>Igniting Talents through Exceptional Sound - Your Gateway to Musical Excellence!</p>
                             <div>
-                                <button className="btn bg-pink-600 text-white border-none mr-5">Get Started</button>
+                                <Link to="/classes"><button className="btn bg-pink-600 text-white border-none mr-5">Get Started</button></Link>
                             </div>
                         </div>
                     </div>
@@ -39,7 +40,7 @@ const Banner = () => {
                             <h2 className='md:text-5xl mb-0 font-bold gradient-text uppercase'>Discover the Joy of Music!</h2>
                             <p>Where Music Comes Alive! Join us for a Vibrant and Inspiring Musical Journey!</p>
                             <div>
-                                <button className="btn bg-pink-600 text-white border-none mr-5">Get Started</button>
+                                <Link to="/classes"><button className="btn bg-pink-600 text-white border-none mr-5">Get Started</button></Link>
                             </div>
                         </div>
                     </div>
