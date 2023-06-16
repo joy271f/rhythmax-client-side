@@ -40,24 +40,7 @@ const UpdateClasses = () => {
                 <div className="card flex-shrink-0 w-3/4 shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="card-body grid md:grid-cols-2 gap-10">
-                            <input
-                                type="hidden"
-                                {...register("instructorName", { required: true })}
-                                value={user?.displayName}
-                                readOnly
-                            />
-                            <input
-                                type='hidden'
-                                {...register("instructorEmail", { required: true })}
-                                value={user?.email}
-                                readOnly
-                            />
-                            <input
-                                type='hidden'
-                                {...register("enrolled", { required: true })}
-                                value={0}
-                                readOnly
-                            />
+                          
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Class name</span>

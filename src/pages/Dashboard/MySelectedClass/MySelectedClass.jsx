@@ -5,7 +5,7 @@ import { AuthContext } from '../../../provider/AuthProvider';
 
 const MySelectedClass = () => {
     const { user, logOut } = useContext(AuthContext);
-    const [myClasses, setMyClasses] = useState()
+    const [myClasses, setMyClasses] = useState([])
 
     useEffect(() => {
         fetch(`http://localhost:5000/bookings?email=${user?.email}`, {

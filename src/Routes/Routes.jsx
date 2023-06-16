@@ -17,6 +17,7 @@ import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
 import UpdateClasses from "../pages/Dashboard/UpdateClasses/UpdateClasses";
 import MySelectedClass from "../pages/Dashboard/MySelectedClass/MySelectedClass";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -84,6 +85,10 @@ export const router = createBrowserRouter([
                 path: '/dashboard/payment/:id',
                 element: <PrivateRoute><Payment /></PrivateRoute>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_SERVER_URL}/bookings/${params.id}`)
+            },
+            {
+                path: '/dashboard/paymenthistory',
+                element: <PrivateRoute><PaymentHistory /></PrivateRoute>
             }
         ]
     }

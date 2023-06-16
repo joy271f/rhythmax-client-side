@@ -7,6 +7,7 @@ const AddClass = () => {
     const { user, logOut } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
+        data = { ...data, enrolled: 0 }
         fetch('http://localhost:5000/class', {
             method: 'POST',
             headers: {
@@ -64,12 +65,6 @@ const AddClass = () => {
                                     readOnly
                                 />
                             </div>
-                            <input
-                                type='hidden'
-                                {...register("enrolled", { required: true })}
-                                value={0}
-                                readOnly
-                            />
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Class name</span>
