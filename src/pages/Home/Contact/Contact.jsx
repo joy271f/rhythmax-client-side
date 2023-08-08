@@ -2,7 +2,7 @@
 const Contact = () => {
     return (
         <div>
-            <div className="w-1/2 mx-auto mb-12 mt-4">
+            <div className="p-2 w-full md:w-1/2 mx-auto mb-12 mt-4">
                 <form>
                     <div className="mb-2">
                         <label className="block mb-2">Name</label>
